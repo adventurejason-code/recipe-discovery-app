@@ -5,7 +5,9 @@ import { storageGetString, storageSetString } from '../utils/storage'
 const AppContext = createContext(null)
 
 export function AppProvider({ children }) {
-  const [apiKey, setApiKeyState] = useState(() => storageGetString('spoonacular_api_key') || '')
+  const [apiKey, setApiKeyState] = useState(() =>
+    import.meta.env.VITE_SPOONACULAR_API_KEY || storageGetString('spoonacular_api_key') || ''
+  )
   const [view, setView] = useState('search')
   const [viewParams, setViewParams] = useState({})
 
